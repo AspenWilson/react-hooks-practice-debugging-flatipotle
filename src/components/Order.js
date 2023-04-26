@@ -1,43 +1,42 @@
 import React, { useState } from "react";
+import Side from "./Side";
 import burritoImg from "../images/burrito-bowl.jpg";
 
-function Order(props) {
-  const [isClicked, setIsClicked] = useState(false);
+function Order({proteinChoice, toppingsChoice, fillingsChoice, sidesChoice}) {
+  const [showSides, setShowSides] = useState(false);
 
   function handleClick() {
-    isClicked = !isClicked;
+    setShowSides((showSides) => !showSides);
   }
 
   return (
-    <div className="ui centered raised card">
+    <div className="ui centered raised card"> In-Progress Order
       <div className="image">
         <img src={burritoImg} alt="burrito bowl" />
       </div>
       <div className="content">
         <b>Protein:</b>
         <br />
-        {props.protein.length > 0 ? props.protein.join(", ") : "None"}
+        {proteinChoice.length > 0 ? proteinChoice.join(', ') : 'No Protein Selected'}
         <br />
         <b>Fillings:</b>
         <br />
-        {props.fillings.length > 0 ? props.fillings.join(", ") : "None"}
+        {fillingsChoice.length > 0 ? fillingsChoice.join(', ') : 'No Fillings Selected'}
         <br />
         <b>Toppings:</b>
         <br />
-        {props.toppings.length > 0 ? props.toppings.join(", ") : "None"}
+        {toppingsChoice.length > 0 ? toppingsChoice.join(', ') : 'No Toppings Selected'}
         <br />
       </div>
       <div className="extra content">
-        {props.sides.length > 0 ? (
+        {sidesChoice.length > 0 ? (
           <button className="ui button small" onClick={handleClick}>
             View Sides
           </button>
         ) : (
           <p>No sides</p>
         )}
-
-        {/* this is just a shortcut to writing state.isClicked ? <Side sides={props.sides} /> : null */}
-        {state.isClicked && <Side sides={props.sides} />}
+        {showSides ? <Side sidesChoice={sidesChoice} /> : null}
       </div>
     </div>
   );

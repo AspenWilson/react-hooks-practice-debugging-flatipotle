@@ -1,7 +1,9 @@
 import React from "react";
 
-function Side(props) {
-  return <div>{props.sides.join(", ")}</div>;
+function Side({sidesChoice}) {
+  return <div>
+    {sidesChoice.join(', ')}
+    </div>;
 }
 
 export default Side;
